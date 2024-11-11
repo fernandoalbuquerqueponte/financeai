@@ -1,8 +1,13 @@
+import Navbar from "../_components/navbar";
+
 const Subscription = () => {
   return (
-    <div>
-      <h1>Subscription</h1>
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <h1>Subscription</h1>
+      </div>
+    </>
   );
 };
 
