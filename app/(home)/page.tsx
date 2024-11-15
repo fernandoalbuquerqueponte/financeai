@@ -1,10 +1,13 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
+import TransactionsPieChart from "./_components/transactions-pie-chart";
 import SummaryCard from "./_components/summary-cards";
-import Navbar from "../_components/navbar";
 import TimeSelect from "./_components/time-select";
+import Navbar from "../_components/navbar";
+
 import { isMatch } from "date-fns";
+import { getDashboard } from "../_data/get-dashboard";
 
 interface HomeProps {
   searchParams: { mouth: string };
@@ -20,6 +23,8 @@ const Home = async ({ searchParams: { mouth } }: HomeProps) => {
   if (monthIsValid) {
     redirect("?mouth=01");
   }
+
+  const dashboard = await getDashboard(mouth);
   return (
     <>
       <Navbar />
@@ -28,7 +33,15 @@ const Home = async ({ searchParams: { mouth } }: HomeProps) => {
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <TimeSelect />
         </div>
-        <SummaryCard mouth={mouth} />
+
+        <div className="grid grid-cols-[2fr,1fr]">
+          <div className="flex flex-col gap-6">
+            <SummaryCard mouth={mouth} {...dashboard} />
+            <div className="grid grid-cols-3 grid-rows-1 gap-6">
+              <TransactionsPieChart {...dashboard} />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
