@@ -10,6 +10,7 @@ import Navbar from "../_components/navbar";
 import { isMatch } from "date-fns";
 import { getDashboard } from "../_data/get-dashboard";
 import LastTransactions from "./_components/last-transactions";
+import { canUserAddTransaction } from "../_data/can-user-add-transaction";
 
 interface HomeProps {
   searchParams: { mouth: string };
@@ -27,6 +28,7 @@ const Home = async ({ searchParams: { mouth } }: HomeProps) => {
   }
 
   const dashboard = await getDashboard(mouth);
+  const userCanAddTransaction = await canUserAddTransaction();
   return (
     <>
       <Navbar />
@@ -38,7 +40,11 @@ const Home = async ({ searchParams: { mouth } }: HomeProps) => {
 
         <div className="grid grid-cols-[2fr,1fr] gap-6 overflow-hidden">
           <div className="flex flex-col gap-6 overflow-hidden">
-            <SummaryCard mouth={mouth} {...dashboard} />
+            <SummaryCard
+              mouth={mouth}
+              {...dashboard}
+              userCanAddTransaction={userCanAddTransaction}
+            />
             <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCategory
