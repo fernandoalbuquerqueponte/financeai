@@ -41,7 +41,7 @@ const DeleteTransactionButton = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Você Deseja realmente deletar essa transação?
+            Você Deseja realmente excluir essa transação?
           </AlertDialogTitle>
           <AlertDialogDescription>
             Essa ação não pode ser desfeita.
@@ -49,8 +49,8 @@ const DeleteTransactionButton = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={handleConfirmDeleteClick}>
-            Continuar
+          <AlertDialogAction asChild onClick={handleConfirmDeleteClick}>
+            <Button className="bg-red-500 hover:bg-red-400">Excluir</Button>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
