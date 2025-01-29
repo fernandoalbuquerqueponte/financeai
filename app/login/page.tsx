@@ -35,7 +35,7 @@ const LoginPage = async () => {
           </Button>
         </SignInButton>
       </div>
-      <div className="relative h-full w-full">
+      <div className="relative hidden h-full w-full md:block">
         <Image
           src="/login.png"
           alt="login page"
