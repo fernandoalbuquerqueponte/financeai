@@ -12,8 +12,8 @@ export const getDashboard = async (mouth: string) => {
   const where = {
     userId,
     date: {
-      gte: new Date(`2024-${mouth}-01`),
-      lt: new Date(`2024-${mouth}-31`),
+      gte: new Date(`2025-${mouth}-01`),
+      lt: new Date(`2025-${mouth}-31`),
     },
   };
   const depositTotal = Number(
